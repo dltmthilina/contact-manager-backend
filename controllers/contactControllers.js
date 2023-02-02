@@ -13,6 +13,11 @@ const getContacts = (req, res)=>{
 //@access public
 const createContacts = (req, res)=>{
     console.log(req.body)
+    const {name, email, phone} = req.body; 
+    if(!name || !email || !phone){
+        res.status(400);
+        throw new Error("All fields are mandetory")
+    }
     res.status(201).json({message:"Create contacts"})
 }
 
