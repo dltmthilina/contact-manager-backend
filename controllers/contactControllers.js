@@ -11,7 +11,7 @@ const getContacts = (req, res)=>{
 //@desc create contacts
 //@route POST /api/contacts
 //@access public
-const createContacts = (req, res)=>{
+const createContacts = async(req, res)=>{
     console.log(req.body)
     const {name, email, phone} = req.body; 
     if(!name || !email || !phone){
@@ -24,14 +24,14 @@ const createContacts = (req, res)=>{
 //@desc get contacts by id
 //@route GET /api/contacts/:id
 //@access public
-const getContactsById = (req, res)=>{
+const getContactsById = async(req, res)=>{
     res.status(200).json({message:`Get contact for ${req.params.id}`});
 }
 
 //@desc update contacts by id
 //@route PUT /api/contacts/:id
 //@access public
-const updateContactsById = (req, res)=>{
+const updateContactsById = async(req, res)=>{
     
     res.status(200).json({message:`Update contact for ${req.params.id}`});
 }
@@ -39,8 +39,9 @@ const updateContactsById = (req, res)=>{
 //@desc delete contacts by id
 //@route DELETE /api/contacts/:id
 //@access public
-const deleteContactsById = (req, res)=>{
+const deleteContactsById = async(req, res)=>{
     res.status(200).json({message:`Delete contact for ${req.params.id}`});
+  
 }
 
 
