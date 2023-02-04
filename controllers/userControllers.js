@@ -24,7 +24,7 @@ const userRegister = asyncHandler(async (req, res)=>{
     const hashedPassword = await bcrypt.hash(password, 10);
     console.log("HashedPassword:", hashedPassword)
 
-    const user = await User.create({
+     const user = await User.create({
         username,
         email,
         password:hashedPassword,
@@ -36,7 +36,7 @@ const userRegister = asyncHandler(async (req, res)=>{
         res.status(400);
         throw new Error("User data is not valid");
     }
-    
+     
 })
 
 //@desc User login
@@ -61,7 +61,7 @@ const userLogin = asyncHandler(async (req, res)=>{
                 },
             },
             process.env.ACCESS_TOKEN_SECRET,
-            {expiresIn:"1m"}
+            {expiresIn:"15m"}
         );
         res.status(200).json({accessToken})
     }else{
@@ -72,9 +72,9 @@ const userLogin = asyncHandler(async (req, res)=>{
 
 //@desc current user
 //@route GET /api/current
-//@access public
+//@access private
 const userCurrent = asyncHandler(async (req, res)=>{
-    res.json({message:"login user information"})
+    res.json(req.user)
 })
 
 module.exports = {userRegister, userLogin, userCurrent}
